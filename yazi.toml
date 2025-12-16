@@ -1,32 +1,32 @@
 [mgr]
-ratio = [1,2,4]
+ratio = [1, 2, 4]
 #sort_by = "mtime"
 sort_sensitive = false
 sort_reverse = false
 sort_dir_first = true
 linemode = "none"
-show_symlink = true 
-show_hidden = true
+show_symlink = false
+show_hidden = false
 
 [preview]
-wrap = "yes" 
+wrap = "yes"
 
 [[opener.set-wallpaper]]
-run  = 'hyprctl hyprpaper reload ,"$1"'
-for  = "linux"
+run = 'hyprctl hyprpaper reload ,"$1"'
+for = "linux"
 desc = "Set as wallpaper"
 
 [[open.prepend_rules]]
 mime = "image/*"
-use  = [ "set-wallpaper", "open" ]
+use = ["set-wallpaper", "open"]
 
 ## GIT
 [[plugin.prepend_fetchers]]
-id   = "git"
+id = "git"
 name = "*"
-run  = "git"
+run = "git"
 
 [[plugin.prepend_fetchers]]
-id   = "git"
+id = "git"
 name = "*/"
-run  = "git"
+run = "git"
