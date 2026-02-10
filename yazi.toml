@@ -11,14 +11,29 @@ show_hidden = false
 [preview]
 wrap = "yes"
 
-[[opener.set-wallpaper]]
-run = 'hyprctl hyprpaper reload ,"$1"'
+[[opener.set-wallpaper-all]]
+run = '''
+for m in $(hyprctl monitors -j | jq -r '.[].name'); do
+  hyprctl hyprpaper wallpaper "$m,$1"
+done
+'''
 for = "linux"
-desc = "Set as wallpaper"
+desc = "Set as wallpaper, for ALL monitors"
+
+[[opener.set-wallpaper-left]]
+run = 'hyprctl hyprpaper wallpaper DP-3,"$1"'
+for = "linux"
+desc = "Set as wallpaper, for LEFT monitors"
+
+[[opener.set-wallpaper-right]]
+run = 'hyprctl hyprpaper wallpaper HDMI-A-1,"$1"'
+for = "linux"
+desc = "Set as wallpaper, for RIGHT monitors"
+
 
 [[open.prepend_rules]]
 mime = "image/*"
-use = ["set-wallpaper", "open"]
+use = ["set-wallpaper-all", "set-wallpaper-left", "set-wallpaper-right", "open"]
 
 ## GIT
 [[plugin.prepend_fetchers]]
